@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Иван Иванов — Веб-разработчик</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="logo">&lt;dev/&gt;</div>
+        <ul class="nav-links">
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#projects">Проекты</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <h1>Привет, я <span class="accent">Иван</span></h1>
+        <p class="subtitle">Frontend-разработчик, создаю быстрые и красивые интерфейсы</p>
+        <a href="#projects" class="btn">Смотреть работы</a>
+    </header>
+
+    <!-- Обо мне -->
+    <section id="about" class="section">
+        <h2>Обо мне</h2>
+        <p>Пишу на JavaScript/TypeScript, люблю React и чистый CSS. Делаю акцент на UX, доступности и производительности. В веб-разработке 3+ года.</p>
+    </section>
+
+    <!-- Навыки -->
+    <section id="skills" class="section">
+        <h2>Навыки</h2>
+        <div class="skills-grid">
+            <div class="skill-card">HTML5</div>
+            <div class="skill-card">CSS3 / SCSS</div>
+            <div class="skill-card">JavaScript</div>
+            <div class="skill-card">TypeScript</div>
+            <div class="skill-card">React</div>
+            <div class="skill-card">Node.js</div>
+            <div class="skill-card">Git</div>
+            <div class="skill-card">Figma</div>
+        </div>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects" class="section">
+        <h2>Проекты</h2>
+        <div class="projects-grid">
+            <article class="project-card">
+                <h3>Интернет-магазин</h3>
+                <p>SPA на React + Redux, корзина, фильтры, оплата.</p>
+                <a href="#" target="_blank">Демо →</a>
+            </article>
+            <article class="project-card">
+                <h3>Дашборд аналитики</h3>
+                <p>Визуализация данных на Chart.js с REST API.</p>
+                <a href="#" target="_blank">Демо →</a>
+            </article>
+            <article class="project-card">
+                <h3>Лендинг стартапа</h3>
+                <p>Адаптивная вёрстка, анимации на CSS/JS.</p>
+                <a href="#" target="_blank">Демо →</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="section">
+        <h2>Контакты</h2>
+        <p>Хотите обсудить проект? Напишите мне:</p>
+        <div class="contacts">
+            <a href="mailto:you@example.com">Email</a>
+            <a href="https://t.me/username" target="_blank">Telegram</a>
+            <a href="https://github.com/username" target="_blank">GitHub</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Иван Иванов</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
