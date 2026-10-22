@@ -8,6 +8,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         const target = document.querySelector(link.getAttribute('href'));
         if (target) {
             target.scrollIntoView({ behavior: 'smooth' });
+            // Закрываем меню, если оно открыто
             navLinks.classList.remove('open');
             burger.classList.remove('active');
             document.body.classList.remove('no-scroll');
@@ -24,20 +25,17 @@ burger.addEventListener('click', () => {
     burger.setAttribute('aria-expanded', isOpen);
 });
 
-// ========== ПОЯВЛЕНИЕ СЕКЦИЙ ПРИ СКРОЛЛЕ ==========
+// ========== ПОЯВЛЕНИЕ СЕКЦИЙ ПРИ СКРОЛЛЕ (Исправлено) ==========
+// Теперь используем opacity и visibility, чтобы текст не съезжал
 const sectionObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('visible');
         }
     });
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     sectionObserver.observe(section);
 });
 
@@ -46,8 +44,10 @@ const progressBar = document.getElementById('scrollProgress');
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const progress = (scrollTop / docHeight) * 100;
-    progressBar.style.width = progress + '%';
+    if (docHeight > 0) {
+        const progress = (scrollTop / docHeight) * 100;
+        progressBar.style.width = progress + '%';
+    }
 });
 
 // ========== ПЕЧАТАЮЩИЙСЯ ТЕКСТ ==========
@@ -78,7 +78,7 @@ function type() {
     }
     setTimeout(type, isDeleting ? 50 : 100);
 }
-type();
+setTimeout(type, 500); // Небольшая задержка перед стартом
 
 // ========== КНОПКА «НАВЕРХ» ==========
 const toTop = document.getElementById('toTop');
@@ -97,21 +97,30 @@ toTop.addEventListener('click', () => {
 // ========== ХОВЕР ЛОГОТИПА ==========
 const logo = document.querySelector('.logo');
 logo.addEventListener('mouseenter', () => {
-    logo.style.transform = 'scale(1.15) rotate(-5deg)';
+    logo.style.transform = 'scale(1.1) rotate(-3deg)';
 });
 logo.addEventListener('mouseleave', () => {
     logo.style.transform = 'scale(1) rotate(0)';
 });
 
-// ========== КАСТОМНЫЙ КУРСОР ==========
+// ========== КАСТОМНЫЙ КУРСОР (Исправлено) ==========
 const cursorDot = document.getElementById('cursorDot');
 const cursorRing = document.getElementById('cursorRing');
 let mouseX = 0, mouseY = 0;
 let ringX = 0, ringY = 0;
+let isMouseMoving = false;
 
 document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    
+    // Показываем курсор только при первом движении мыши
+    if (!isMouseMoving) {
+        cursorDot.style.opacity = '1';
+        cursorRing.style.opacity = '1';
+        isMouseMoving = true;
+    }
+    
     cursorDot.style.left = mouseX + 'px';
     cursorDot.style.top = mouseY + 'px';
 });
@@ -222,8 +231,8 @@ document.querySelectorAll('.tilt').forEach(card => {
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -10;
-        const rotateY = ((x - centerX) / centerX) * 10;
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
         inner.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
     });
     card.addEventListener('mouseleave', () => {
@@ -265,7 +274,7 @@ window.addEventListener('load', () => {
 });
 
 // ========== МАГНИТНАЯ КНОПКА ==========
-const magnetBtn = document.querySelector('.hero .btn');
+const magnetBtn = document.getElementById('magnetBtn');
 if (magnetBtn) {
     magnetBtn.addEventListener('mousemove', e => {
         const rect = magnetBtn.getBoundingClientRect();
@@ -286,6 +295,8 @@ if (emailLink) {
         const email = emailLink.href.replace('mailto:', '');
         navigator.clipboard.writeText(email).then(() => {
             showToast('📋 Email скопирован: ' + email);
+        }).catch(() => {
+            window.location.href = emailLink.href; // Фоллбэк, если буфер обмена недоступен
         });
     });
 }

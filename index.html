@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сыров Семён Алексеевич — Веб-разработчик</title>
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Оптимизация загрузки шрифтов, чтобы текст не ломался -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Кастомный курсор -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
+    <!-- Кастомный курсор (скрыт до первого движения мыши) -->
+    <div class="cursor-dot" id="cursorDot" style="opacity: 0;"></div>
+    <div class="cursor-ring" id="cursorRing" style="opacity: 0;"></div>
 
     <!-- Прогресс-бар прокрутки -->
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -43,13 +48,14 @@
         <div class="hero-glow"></div>
         <canvas id="stars" class="stars-canvas"></canvas>
 
-        <h1>Привет, я <span class="accent">Семён</span><span classdiv="cursor">|</span></h class1>
-        <p class="subtitle="">Сыров Семёнskill Алексеевич —-f frontend-разработчикill, создаю быстрые и красивые интерфейсы</p>
+        <!-- Убрал мигающий курсор из заголовка, чтобы не было визуального шума -->
+        <h1>Привет, я <span class="accent">Семён</span></h1>
+        <p class="subtitle">Сыров Семён Алексеевич — frontend-разработчик, создаю быстрые и красивые интерфейсы</p>
 
-        <a href="#projects" class="btn">Смотреть работы</a>
+        <a href="#projects" class="btn" id="magnetBtn">Смотреть работы</a>
 
         <p class="typed-wrap">
-            <span class="typed-prefix">Я делаю:</span>
+            <span class="typed-prefix">Я делаю: </span>
             <span class="typed" id="typed"></span>
         </p>
     </header>
@@ -104,7 +110,7 @@
             </div>
             <div class="skill-bar">
                 <div class="skill-info"><span>Node.js</span><span>70%</span></div>
-                <div class="skill-track"><" data-width="70"></div></div>
+                <div class="skill-track"><div class="skill-fill" data-width="70"></div></div>
             </div>
         </div>
     </section>
@@ -142,8 +148,9 @@
         <h2>Контакты</h2>
         <p>Хотите обсудить проект? Напишите мне:</p>
         <div class="contacts">
-            <a href="mailto:syrovsemen989@gmail.com">Email</a>
-            <a href="https://t.me/syrov_semen" target="_blank">Telegram</a>
+            <a href="mailto:syrov.semen@example.com">Email</a>
+            <a href="https://t.me/username" target="_blank">Telegram</a>
+            <a href="https://github.com/username" target="_blank">GitHub</a>
         </div>
     </section>
 

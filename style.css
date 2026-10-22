@@ -14,8 +14,9 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.6;
-    cursor: none;
+    cursor: none; /* Прячем стандартный курсор на ПК */
     transition: background 0.3s, color 0.3s;
+    overflow-x: hidden;
 }
 
 body.no-scroll { overflow: hidden; }
@@ -55,6 +56,7 @@ body.light footer { border-top-color: #e0e0e8; }
     color: var(--accent);
     font-size: 1.3rem;
     transition: transform 0.3s;
+    cursor: pointer;
 }
 
 .nav-right {
@@ -142,7 +144,7 @@ body.light footer { border-top-color: #e0e0e8; }
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(124, 92, 255, 0.35), transparent 70%);
+    background: radial-gradient(circle, rgba(124, 92, 255, 0.25), transparent 70%);
     border-radius: 50%;
     filter: blur(60px);
     animation: float 8s ease-in-out infinite;
@@ -179,18 +181,11 @@ body.light footer { border-top-color: #e0e0e8; }
 
 .hero .accent { color: var(--accent); }
 
-.cursor {
-    color: var(--accent);
-    animation: blink 1s step-end infinite;
-    font-weight: 400;
-}
-
-@keyframes blink { 50% { opacity: 0; } }
-
 .subtitle {
     color: var(--muted);
     margin: 1rem 0 2rem;
     font-size: 1.1rem;
+    max-width: 800px;
 }
 
 /* ========== КНОПКА ========== */
@@ -205,6 +200,7 @@ body.light footer { border-top-color: #e0e0e8; }
     font-weight: 600;
     transition: transform 0.15s ease, box-shadow 0.2s;
     will-change: transform;
+    z-index: 10;
 }
 
 .btn:hover {
@@ -215,7 +211,7 @@ body.light footer { border-top-color: #e0e0e8; }
 .typed-wrap {
     margin-top: 2rem;
     color: var(--muted);
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .typed {
@@ -227,13 +223,17 @@ body.light footer { border-top-color: #e0e0e8; }
     content: '|';
     animation: blink 1s step-end infinite;
     color: var(--accent);
+    margin-left: 2px;
 }
+
+@keyframes blink { 50% { opacity: 0; } }
 
 /* ========== СЕКЦИИ ========== */
 .section {
     padding: 5rem 10%;
     max-width: 1100px;
     margin: 0 auto;
+    /* Убрал transform из CSS, чтобы JS не ломал текст */
 }
 
 .section h2 {
@@ -403,6 +403,7 @@ footer {
     z-index: 9999;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
 }
 
 .cursor-dot {
@@ -415,7 +416,7 @@ footer {
     width: 32px;
     height: 32px;
     border: 1.5px solid var(--accent);
-    transition: width 0.2s, height 0.2s, background 0.2s;
+    transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.3s;
 }
 
 .cursor-ring.hover {
@@ -440,7 +441,7 @@ footer {
     opacity: 0;
     pointer-events: none;
     transform: translateY(20px);
-    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
     z-index: 50;
     box-shadow: 0 8px 24px rgba(124, 92, 255, 0.4);
 }
@@ -467,13 +468,14 @@ footer {
     z-index: 500;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 30px rgba(124, 92, 255, 0.4);
+    pointer-events: none;
 }
 
 .toast.show { transform: translateX(-50%) translateY(0); }
 
 /* ========== МОБИЛЬНАЯ ВЕРСИЯ ========== */
 @media (max-width: 700px) {
-    body { cursor: auto; }
+    body { cursor: auto; } /* Возвращаем обычный курсор на телефонах */
     .cursor-dot, .cursor-ring { display: none; }
 
     .burger { display: flex; }
