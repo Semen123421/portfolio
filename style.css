@@ -370,25 +370,50 @@ body.light .burger span { background: var(--text); }
 /* ========== КОНТАКТЫ ========== */
 .contacts {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
     margin-top: 1.5rem;
 }
 
 .contacts a {
-    background: var(--card);
+    background: transparent;
     color: var(--text);
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
     text-decoration: none;
-    border: 1px solid #333;
-    transition: border-color 0.2s, background 0.2s;
+    border: 2px solid var(--accent); /* Красная рамка */
     font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 42, 42, 0.2); /* Легкое свечение */
+    z-index: 1;
 }
 
-.contacts a:hover { 
-    border-color: var(--accent); 
-    background: rgba(255, 42, 42, 0.1);
+/* Эффект заливки при наведении */
+.contacts a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.contacts a:hover {
+    color: #fff;
+    box-shadow: 0 0 25px rgba(255, 42, 42, 0.6); /* Яркое свечение */
+    border-color: var(--accent-hover);
+}
+
+.contacts a:hover::before {
+    transform: scaleX(1); /* Заливает кнопку красным при наведении */
 }
 
 /* ========== ФУТЕР ========== */
