@@ -94,14 +94,6 @@ toTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ========== ХОВЕР ЛОГОТИПА ==========
-const logo = document.querySelector('.logo');
-logo.addEventListener('mouseenter', () => {
-    logo.style.transform = 'scale(1.1) rotate(-3deg)';
-});
-logo.addEventListener('mouseleave', () => {
-    logo.style.transform = 'scale(1) rotate(0)';
-});
 
 // ========== КАСТОМНЫЙ КУРСОР (Исправлено) ==========
 const cursorDot = document.getElementById('cursorDot');
